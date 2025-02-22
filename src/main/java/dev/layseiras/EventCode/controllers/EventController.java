@@ -26,10 +26,9 @@ public class EventController {
     @GetMapping("/events/{prettyName}")
     public ResponseEntity<Event> getEventByPrettyName(@PathVariable String prettyName){
         Event evt = eventService.getEventByPrettyName(prettyName);
-        if(evt != null){
+        if (evt != null) {
             return ResponseEntity.ok().body(evt);
-        } else {
-            return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.notFound().build();
     }
 }
