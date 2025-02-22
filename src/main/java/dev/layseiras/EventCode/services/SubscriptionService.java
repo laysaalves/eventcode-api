@@ -24,9 +24,13 @@ public class SubscriptionService {
     public Subscription addNewSubscription(String eventName, User user){
         Subscription subs = new Subscription();
         Event evt = evtRepo.findByPrettyName(eventName);
-        user = userRepo.save(user);
+
+        User userRemembered = userRepo.findByEmail(user.getEmail());
+        if (userRemembered == null) {
+            userRemembered = userRepo.save(user);
+        }
         subs.setEvent(evt);
-        subs.setSubscriber(user);
+        subs.setSubscriber(userRemembered);
 
         Subscription res = subRepo.save(subs);
         return res;
