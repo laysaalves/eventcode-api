@@ -8,7 +8,7 @@ public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "subs_number")
-    private String subscription_id;
+    private Long subscriptionId;
 
     @ManyToOne
     @JoinColumn(name = "subs_user_id")
@@ -25,19 +25,19 @@ public class Subscription {
     public Subscription() {
     }
 
-    public Subscription(String subscription_id, User subscriber, User indication, Event event) {
-        this.subscription_id = subscription_id;
+    public Subscription(Long subscriptionId, User subscriber, User indication, Event event) {
+        this.subscriptionId = subscriptionId;
         this.subscriber = subscriber;
         this.indication = indication;
         this.event = event;
     }
 
-    public String getSubscription_id() {
-        return subscription_id;
+    public Long getSubscriptionId() {
+        return subscriptionId;
     }
 
-    public void setSubscription_id(String subscription_id) {
-        this.subscription_id = subscription_id;
+    public void setSubscriptionId(Long subscriptionId) {
+        this.subscriptionId = subscriptionId;
     }
 
     public User getSubscriber() {
