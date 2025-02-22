@@ -1,7 +1,7 @@
-package dev.layseiras.EventCode.controllers;
+package dev.layseiras.EventCode.infra.presentation;
 
-import dev.layseiras.EventCode.entities.Event;
-import dev.layseiras.EventCode.services.EventService;
+import dev.layseiras.EventCode.core.entities.Event;
+import dev.layseiras.EventCode.core.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

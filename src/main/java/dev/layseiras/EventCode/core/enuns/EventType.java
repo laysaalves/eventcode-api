@@ -1,4 +1,4 @@
-package dev.layseiras.EventCode.enuns;
+package dev.layseiras.EventCode.core.enuns;
 
 public enum EventType {
     WORKSHOP,

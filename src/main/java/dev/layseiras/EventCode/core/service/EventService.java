@@ -1,7 +1,7 @@
-package dev.layseiras.EventCode.services;
+package dev.layseiras.EventCode.core.service;
 
-import dev.layseiras.EventCode.entities.Event;
-import dev.layseiras.EventCode.repositories.EventRepo;
+import dev.layseiras.EventCode.core.entities.Event;
+import dev.layseiras.EventCode.infra.repository.EventRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

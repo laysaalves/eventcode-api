@@ -1,4 +1,4 @@
-package dev.layseiras.EventCode.entities;
+package dev.layseiras.EventCode.core.entities;
 
 import jakarta.persistence.*;
 

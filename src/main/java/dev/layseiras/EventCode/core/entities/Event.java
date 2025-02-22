@@ -1,6 +1,6 @@
-package dev.layseiras.EventCode.entities;
+package dev.layseiras.EventCode.core.entities;
 
-import dev.layseiras.EventCode.enuns.EventType;
+import dev.layseiras.EventCode.core.enuns.EventType;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

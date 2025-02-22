@@ -1,6 +1,6 @@
-package dev.layseiras.EventCode.repositories;
+package dev.layseiras.EventCode.infra.repository;
 
-import dev.layseiras.EventCode.entities.User;
+import dev.layseiras.EventCode.core.entities.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepo extends CrudRepository<User, Long> {

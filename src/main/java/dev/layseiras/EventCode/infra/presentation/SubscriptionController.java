@@ -1,8 +1,8 @@
-package dev.layseiras.EventCode.controllers;
+package dev.layseiras.EventCode.infra.presentation;
 
-import dev.layseiras.EventCode.entities.Subscription;
-import dev.layseiras.EventCode.entities.User;
-import dev.layseiras.EventCode.services.SubscriptionService;
+import dev.layseiras.EventCode.core.entities.Subscription;
+import dev.layseiras.EventCode.core.entities.User;
+import dev.layseiras.EventCode.core.service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
