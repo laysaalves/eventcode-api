@@ -1,5 +1,6 @@
 package dev.layseiras.EventCode.entities;
 
+import dev.layseiras.EventCode.enuns.EventType;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -21,6 +22,9 @@ public class Event {
     @Column(name = "location", length = 255, nullable = false)
     private String location;
 
+    @Column(name = "type")
+    private EventType type;
+
     @Column(name = "price", nullable = false)
     private Double price;
 
@@ -39,11 +43,12 @@ public class Event {
     public Event() {
     }
 
-    public Event(Long id, String name, String prettyName, String location, Double price, LocalDate startDate, LocalDate endDate, LocalDate startTime, LocalDate endTime) {
+    public Event(Long id, String name, String prettyName, String location, EventType type, Double price, LocalDate startDate, LocalDate endDate, LocalDate startTime, LocalDate endTime) {
         this.id = id;
         this.name = name;
         this.prettyName = prettyName;
         this.location = location;
+        this.type = type;
         this.price = price;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -81,6 +86,14 @@ public class Event {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
     }
 
     public Double getPrice() {
