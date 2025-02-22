@@ -4,6 +4,7 @@ import dev.layseiras.EventCode.core.entities.Subscription;
 import dev.layseiras.EventCode.core.entities.User;
 import dev.layseiras.EventCode.core.service.SubscriptionService;
 import dev.layseiras.EventCode.infra.exception.EventNotFoundException;
+import dev.layseiras.EventCode.infra.exception.SubscriptionConflictException;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,8 @@ public class SubscriptionController {
             }
         } catch (EventNotFoundException e) {
             return ResponseEntity.status(404).body(new ErrorMessage(e.getMessage()));
+        } catch (SubscriptionConflictException s) {
+            return ResponseEntity.status(409).body(new ErrorMessage(s.getMessage()));
         }
         return ResponseEntity.badRequest().build();
     }

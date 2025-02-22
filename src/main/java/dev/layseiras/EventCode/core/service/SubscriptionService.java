@@ -4,6 +4,7 @@ import dev.layseiras.EventCode.core.entities.Event;
 import dev.layseiras.EventCode.core.entities.Subscription;
 import dev.layseiras.EventCode.core.entities.User;
 import dev.layseiras.EventCode.infra.exception.EventNotFoundException;
+import dev.layseiras.EventCode.infra.exception.SubscriptionConflictException;
 import dev.layseiras.EventCode.infra.repository.EventRepo;
 import dev.layseiras.EventCode.infra.repository.SubscriptionRepo;
 import dev.layseiras.EventCode.infra.repository.UserRepo;
@@ -35,6 +36,11 @@ public class SubscriptionService {
         }
         subs.setEvent(evt);
         subs.setSubscriber(userRemembered);
+
+        Subscription doubleSub = subRepo.findByEventAndSubscriber(evt, userRemembered);
+        if (doubleSub != null) {
+            throw new SubscriptionConflictException("Subscription in the " + eventName + " for user " + userRemembered.getUserName() + " already exists!");
+        }
 
         Subscription res = subRepo.save(subs);
         return res;
