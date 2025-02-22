@@ -7,8 +7,8 @@ import jakarta.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long id;
+    @Column(name = "userId")
+    private Long userId;
     @Column(name = "username", length = 255, nullable = false)
     private String userName;
     @Column(name = "email", length = 255, unique = true, nullable = false)
@@ -17,18 +17,18 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String userName, String email) {
-        this.id = id;
+    public User(Long userId, String userName, String email) {
+        this.userId = userId;
         this.userName = userName;
         this.email = email;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
