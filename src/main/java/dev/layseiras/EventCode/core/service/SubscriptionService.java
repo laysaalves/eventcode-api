@@ -3,6 +3,7 @@ package dev.layseiras.EventCode.core.service;
 import dev.layseiras.EventCode.core.entities.Event;
 import dev.layseiras.EventCode.core.entities.Subscription;
 import dev.layseiras.EventCode.core.entities.User;
+import dev.layseiras.EventCode.infra.dtos.SubscriptionResponse;
 import dev.layseiras.EventCode.infra.exception.EventNotFoundException;
 import dev.layseiras.EventCode.infra.exception.SubscriptionConflictException;
 import dev.layseiras.EventCode.infra.repository.EventRepo;
@@ -23,7 +24,7 @@ public class SubscriptionService {
     @Autowired
     private SubscriptionRepo subRepo;
 
-    public Subscription addNewSubscription(String eventName, User user) {
+    public SubscriptionResponse addNewSubscription(String eventName, User user) {
         Subscription subs = new Subscription();
         Event evt = evtRepo.findByPrettyName(eventName);
         if (evt == null) {
@@ -43,6 +44,6 @@ public class SubscriptionService {
         }
 
         Subscription res = subRepo.save(subs);
-        return res;
+        return new SubscriptionResponse(res.getSubscriptionId(), "https://eventcode.com/" + res.getEvent().getPrettyName() + "/" + res.getSubscriber().getUserId());
     }
 }

@@ -1,9 +1,9 @@
 package dev.layseiras.EventCode.infra.presentation;
 
-import dev.layseiras.EventCode.core.entities.Subscription;
 import dev.layseiras.EventCode.core.entities.User;
 import dev.layseiras.EventCode.core.service.SubscriptionService;
 import dev.layseiras.EventCode.infra.dtos.ErrorMessage;
+import dev.layseiras.EventCode.infra.dtos.SubscriptionResponse;
 import dev.layseiras.EventCode.infra.exception.EventNotFoundException;
 import dev.layseiras.EventCode.infra.exception.SubscriptionConflictException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class SubscriptionController {
     @PostMapping("/subscription/{prettyName}")
     public ResponseEntity<?> createSubscription(@PathVariable String prettyName, @RequestBody User subscriber) {
         try {
-            Subscription res = service.addNewSubscription(prettyName, subscriber);
+            SubscriptionResponse res = service.addNewSubscription(prettyName, subscriber);
             if (res != null) {
                 return ResponseEntity.ok(res);
             }
