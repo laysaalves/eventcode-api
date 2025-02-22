@@ -3,6 +3,7 @@ package dev.layseiras.EventCode.services;
 import dev.layseiras.EventCode.entities.Event;
 import dev.layseiras.EventCode.entities.Subscription;
 import dev.layseiras.EventCode.entities.User;
+import dev.layseiras.EventCode.exceptions.EventNotFoundException;
 import dev.layseiras.EventCode.repositories.EventRepo;
 import dev.layseiras.EventCode.repositories.SubscriptionRepo;
 import dev.layseiras.EventCode.repositories.UserRepo;
@@ -21,9 +22,12 @@ public class SubscriptionService {
     @Autowired
     private SubscriptionRepo subRepo;
 
-    public Subscription addNewSubscription(String eventName, User user){
+    public Subscription addNewSubscription(String eventName, User user) {
         Subscription subs = new Subscription();
         Event evt = evtRepo.findByPrettyName(eventName);
+        if (evt == null) {
+            throw new EventNotFoundException("Event " + eventName + " not found");
+        }
 
         User userRemembered = userRepo.findByEmail(user.getEmail());
         if (userRemembered == null) {
