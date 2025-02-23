@@ -6,6 +6,7 @@ import dev.layseiras.EventCode.infra.dtos.ErrorMessage;
 import dev.layseiras.EventCode.infra.dtos.SubscriptionResponse;
 import dev.layseiras.EventCode.infra.exception.EventNotFoundException;
 import dev.layseiras.EventCode.infra.exception.SubscriptionConflictException;
+import dev.layseiras.EventCode.infra.exception.UserIndicadorNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,17 +19,17 @@ public class SubscriptionController {
     @Autowired
     private SubscriptionService service;
 
-    @PostMapping("/subscription/{prettyName}")
-    public ResponseEntity<?> createSubscription(@PathVariable String prettyName, @RequestBody User subscriber) {
+    @PostMapping({"/subscription/{prettyName}", "/subscription/{prettyName}/{userId}"})
+    public ResponseEntity<?> createSubscription(@PathVariable String prettyName, @RequestBody User subscriber, @PathVariable Long userId) {
         try {
-            SubscriptionResponse res = service.addNewSubscription(prettyName, subscriber);
+            SubscriptionResponse res = service.addNewSubscription(prettyName, subscriber, userId);
             if (res != null) {
                 return ResponseEntity.ok(res);
             }
         } catch (EventNotFoundException e) {
             return ResponseEntity.status(404).body(new ErrorMessage(e.getMessage()));
-        } catch (SubscriptionConflictException s) {
-            return ResponseEntity.status(409).body(new ErrorMessage(s.getMessage()));
+        } catch (SubscriptionConflictException e) {
+            return ResponseEntity.status(409).body(new ErrorMessage(e.getMessage()));
         }
         return ResponseEntity.badRequest().build();
     }
