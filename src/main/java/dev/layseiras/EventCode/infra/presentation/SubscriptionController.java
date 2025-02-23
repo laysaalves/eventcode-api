@@ -20,7 +20,7 @@ public class SubscriptionController {
     private SubscriptionService service;
 
     @PostMapping({"/subscription/{prettyName}", "/subscription/{prettyName}/{userId}"})
-    public ResponseEntity<?> createSubscription(@PathVariable String prettyName, @RequestBody User subscriber, @PathVariable Long userId) {
+    public ResponseEntity<?> createSubscription(@PathVariable String prettyName, @RequestBody User subscriber, @PathVariable (required = false) Long userId) {
         try {
             SubscriptionResponse res = service.addNewSubscription(prettyName, subscriber, userId);
             if (res != null) {

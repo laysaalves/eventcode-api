@@ -36,10 +36,12 @@ public class SubscriptionService {
         if (userRemembered == null) {
             userRemembered = userRepo.save(user);
         }
-
-        User indicador = userRepo.findById(userId).orElse(null);
-        if (indicador == null) {
-            throw new UserIndicadorNotFoundException("User indicador " + userId + " not found");
+        User indicador = null;
+        if (userId != null) {
+            indicador = userRepo.findById(userId).orElse(null);
+            if (indicador == null) {
+                throw new UserIndicadorNotFoundException("User indicador " + userId + " not found");
+            }
         }
         subs.setEvent(evt);
         subs.setSubscriber(userRemembered);
