@@ -26,7 +26,7 @@ public class SubscriptionController {
             if (res != null) {
                 return ResponseEntity.ok(res);
             }
-        } catch (EventNotFoundException e) {
+        } catch (EventNotFoundException | UserIndicadorNotFoundException e) {
             return ResponseEntity.status(404).body(new ErrorMessage(e.getMessage()));
         } catch (SubscriptionConflictException e) {
             return ResponseEntity.status(409).body(new ErrorMessage(e.getMessage()));
